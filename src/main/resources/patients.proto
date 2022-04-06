@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+//the package where the auto-generated code will be placed
+option java_package = "com.proto.patients";
+
+//if different java files are generated for different classes
+option java_multiple_files = true;
+
+option java_outer_classname = "PatientsServiceImpl";
+
+//for conflict resolution to distinguish the classes with the same name
+package hostpitalservicespatients;
+
+// Interface exported by the server.
+service PatientsService {
+
+  rpc calculate(CalculateRequest) returns (CalculateResponse) {}
+
+
+  rpc generateRandomNumbers(RandomRequest) returns (stream NumberResponse ) {}
+
+
+  rpc averageValues(stream NumberMessage) returns (CalculateResponse ) {}
+
+
+  rpc convertBase(stream ConvertMessage) returns (stream ConvertResponse ) {}
+
+}
+
+message ConvertMessage {
+	string number = 1;
+	int32 fromBase = 2;
+	int32 toBase = 3;
+}
+
+message ConvertResponse {
+	string number  = 1;
+	int32 base = 2;
+}
+
+message RandomRequest {
+	int32 numbers = 1;
+	int32 min = 2;
+	int32 max = 3;
+}
+
+
+message NumberResponse {
+	int32 number = 1;
+}
+
+
+
+message CalculateRequest {
+  float number1 = 1;
+  float number2 = 2;
+
+  enum Operation{
+
+  	ADDITION =0;
+  	SUBTRACTION=1;
+  	MULTIPLICATION=2;
+  	DIVISION=3;
+  }
+  Operation operation = 3;
+}
+
+
+message CalculateResponse {
+	float result = 1;
+	string message = 2;
+}
+
+
+message NumberMessage{
+	float number = 1;
+}
+

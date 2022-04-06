@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option java_package = "com.proto.price";
+
+// Incoming request from client
+message hospitalprice{
+    string name = 1;
+}
+
+// Response to be returned by API service
+message service_price{
+    float max_price = 1;
+    float min_price = 2;
+    float avg_price = 3;
+}
+
+// Service definition for GExchange
+service ServiceCharge {
+
+   // get_price method definition
+   rpc get_price (hospitalprice) returns (service_price) {};
+
+}

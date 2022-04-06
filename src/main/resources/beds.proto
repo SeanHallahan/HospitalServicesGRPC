@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+//the package where the auto-generated code will be placed
+option java_package = "com.proto.beds";
+
+//if different java files are generated for different classes
+option java_multiple_files = true;
+
+option java_outer_classname = "BedsServiceImpl";
+
+//for conflict resolution to distinguish the classes with the same name
+package hostpitalservicesbeds;
+
+//Remote procedure code within
+service BedsAvailableRequest{
+
+	//Simple/Unary RPC
+	rpc sayWelcome(WelcomeRequest) returns(BedsAvailableResponse) {}
+}
+
+//the request message that is sent from the client to the server
+message WelcomeRequest{
+	string name = 1;
+	int32 number = 2;
+}
+
+//the response message that is sent from the server to the client
+message BedsAvailableResponse{
+	string message = 1;
+}
